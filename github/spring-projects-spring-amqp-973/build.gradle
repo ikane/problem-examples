@@ -1,0 +1,43 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.4.RELEASE")
+  }
+}
+
+apply plugin: "java"
+apply plugin: "application"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+mainClassName = 'matthewh86.ExampleApplication'
+
+
+ext {
+  lombokVersion = "1.18.4"
+  junitVersion = "5.3.2"
+}
+
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+}
+
+dependencies {
+  implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-amqp")
+
+  testImplementation("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.amqp:spring-rabbit-test")
+
+  annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+  compileOnly("org.projectlombok:lombok:${lombokVersion}")
+}
